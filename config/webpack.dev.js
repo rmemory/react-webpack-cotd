@@ -26,24 +26,9 @@ const config = {
 	module: {
 		rules: [
 			{
-				test: /\.css$/,
-				// use: ['style-loader', 'css-loader'],
-
-				use: [
-					{
-						loader: 'style-loader',
-					},
-					{
-						loader: 'css-loader',
-						options: {
-							// CSS modules are disabled by default, but leaving this here
-							// in case it's needed to be set to true.
-							modules: false, // { style1, style2 } from ‘./styles.css’)
-							camelCase: true, // .home-button {...} -> import { homeButton } from './styles.css'
-							sourceMap: true,
-						},
-					},
-				],
+				test: /\.styl$/,
+				exclude: /node_modules/,
+				loaders: ['style-loader', 'css-loader', 'stylus-loader'],
 			},
 		],
 	},

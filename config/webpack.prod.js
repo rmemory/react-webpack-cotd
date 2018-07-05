@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const commonPaths = require('./common-paths');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const commonPaths = require('./common-paths');
 
 const config = {
 	mode: 'production',
@@ -21,42 +21,15 @@ const config = {
 	module: {
 		rules: [
 			{
-				test: /\.css$/,
+				test: /\.styl$/,
+				exclude: /node_modules/,
 				/* ExtractTextPlugin moves all the required *.css modules in
 				   entry chunks into a separate CSS file. So your styles are
 				   no longer inlined into the JS bundle, but in a separate
 				   CSS file (styles.css). If your total stylesheet volume is
 				   big, it will be faster because the CSS bundle is loaded in
 				   parallel to the JS bundle. */
-				use: ExtractTextPlugin.extract({
-					/* According to docs for ExtractTextPlugin, style-loader can
-					   Only be a fallback */
-					fallback: 'style-loader',
-					use: [
-						// 'css-loader',
-						{
-							loader: 'css-loader',
-							options: {
-								modules: false,
-								importLoaders: 1,
-								camelCase: true,
-								sourceMap: true,
-							},
-						},
-						{
-							loader: 'postcss-loader',
-							options: {
-								config: {
-									ctx: {
-										autoprefixer: {
-											browsers: 'last 2 versions',
-										},
-									},
-								},
-							},
-						},
-					],
-				}),
+				loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'stylus-loader'])
 			},
 		],
 	},
