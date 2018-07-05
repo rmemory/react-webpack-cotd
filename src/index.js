@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import StorePicker from './components/StorePicker.jsx';
+import App from './components/App.jsx';
 
 import './css/style.styl';
 
@@ -16,9 +17,9 @@ const render = Component => ReactDOM.render( // eslint-disable-line react/no-ren
 	</AppContainer>,
 	document.getElementById('main'));
 
-render(StorePicker);
+render(App);
 
 // Webpack Hot Module Replacement API
 if (module.hot) {
-	module.hot.accept('./components/StorePicker.jsx', () => render(StorePicker));
+	module.hot.accept('./components/App.jsx', () => render(App));
 }
