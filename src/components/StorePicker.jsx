@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line, react/jsx-indent-props,
-   implicit-arrow-linebreak */
+   implicit-arrow-linebreak, react/destructuring-assignment,
+   react/prop-types */
 import React, { Component } from 'react';
 import { getFunName } from '../helpers';
 
